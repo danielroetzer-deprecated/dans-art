@@ -1,0 +1,35 @@
+{
+  "name": "dans-art",
+  "version": "0.0.1",
+  "description": "Website with my paintings, using vue.js logic",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielroetzer/dans-art.git"
+  },
+  "keywords": [
+    "JavaScript",
+    "Stylus",
+    "Vue.js"
+  ],
+  "author": "Daniel Rötzer",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/danielroetzer/dans-art/issues"
+  },
+  "homepage": "https://github.com/danielroetzer/dans-art#readme",
+  "dependencies": {
+    "vue": "^2.5.16"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.0",
+    "gulp-clean-css": "^3.9.4",
+    "gulp-notify": "^3.2.0",
+    "gulp-rename": "^1.2.3",
+    "gulp-stylus": "^2.7.0",
+    "gulp-uglify": "^3.0.0"
+  }
+}
