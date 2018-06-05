@@ -8,14 +8,17 @@
     </head>
 
     <body>
-        <!--<div class="panorama">
-
-        </div>-->
+        <div class="panorama">
+            <!--<div class="title">Dan´s Art</div>-->
+            <div class="search container" id="search">
+                <input type="text" placeholder="Enter a Color" @keyup.enter="filterByColor(searchColor)" v-model='searchColor'/>
+            </div>
+        </div>
 
 
         <div class="container" id="paintings">
 
-            <input type="text" placeholder="Enter a Color" @keyup.enter="filterByColor(searchColor)" v-model='searchColor'/>
+            <!--<input type="text" placeholder="Enter a Color" @keyup.enter="filterByColor(searchColor)" v-model='searchColor'/>-->
             <button v-on:click="showAll()">All</button>
             <button v-on:click="filterByColor('green')">Green</button>
             <button v-on:click="filterByColor('blue')">Blue</button>
@@ -24,16 +27,6 @@
 
             <br><br>
 
-            <!--<label for="check-green">
-                <input id='check-green' class="filled-in" type="checkbox" v-model="checkboxes.green" @change="checkboxClicked"/>
-                <span>Green</span>
-            </label>
-
-            <label for="check-yellow">
-                <input id='check-yellow' class="filled-in" type="checkbox" v-model="checkboxes.yellow" @change="checkboxClicked"/>
-                <span>Yellow</span>
-            </label>-->
-
             <br><br><br><br><br><br>
 
             <label v-for="(color, index) in colors" :for="color.id">
@@ -41,16 +34,20 @@
                 <span>{{color.name}}</span>
             </label>
             <button v-on:click="resetSelection">Reset Selection</button>
+            <span>Shown Paintings: {{amount}}</span>
 
 
             <br><br><br><br><br><br>
+
+            <button v-on:click="changeView('grid')">Grid</button>
+            <button v-on:click="changeView('full')">Full width</button>
 
 
 
             <div class="row">
                 <div v-for="(p, i) in paintings">
 
-                    <div v-if="i % 2 == 0" class="col s12 m6 l4">
+                    <div v-if="i % 2 == 0" v-bind:class="['col s12 m6 l4', !gridActive ? 'offset-m6 offset-l8' : '']">
                         <div class="card">
                             <div class="card-image">
                                 <img :src="'dist/img/paintings/' + p.path">
@@ -61,7 +58,7 @@
                             </div>
                         </div>
                     </div>
-                    <div v-if="i % 2 != 0" class="col s12 m6 l4 offset-m6 offset-l8">
+                    <div v-if="i % 2 != 0" class="col s12 m6 l4">
                         <div class="card">
                             <div class="card-image">
                                 <img :src="'dist/img/paintings/' + p.path">
@@ -73,7 +70,9 @@
                         </div>
                     </div>
                 </div>
-
+                <div v-if="paintings.length < 1 ">
+                    <span>No Paintings Match The Selection</span>
+                </div>
             </div>
         </div>
 
