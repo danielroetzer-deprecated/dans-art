@@ -1,0 +1,13 @@
+body {
+  padding: 0;
+  margin: 0;
+  background-color: #d3d3d3;
+}
+.panorama {
+  height: 400px;
+  width: 100%;
+  background-color: #2997ed;
+}
+.cart-title {
+  text-shadow: 1px 1px #000 !important;
+}
