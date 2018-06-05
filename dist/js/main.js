@@ -21,7 +21,8 @@ var paintings = [
 var colors = [
     {color: "green", id: "check-green", name: "Green"},
     {color: "yellow", id: "check-yellow", name: "Yellow"},
-    {color: "blue", id: "check-blue", name: "Blue"}
+    {color: "blue", id: "check-blue", name: "Blue"},
+    {color: "black", id: "check-black", name: "Black"}
 ]
 
 
@@ -32,17 +33,12 @@ var myPaintings = new Vue({
             paintings: paintings,
             searchColor: "",
             colors: colors,
-            checkboxes: {
-                green: false,
-                yellow: false,
-                blue: false
-            },
-            abc: []
+            checked: []
         }
     },
     methods: {
         filterByColor: function (color) {
-            myPaintings.abc = []
+            myPaintings.checked = []
             myPaintings.paintings = paintings.filter(function (p) {
                 for(var x=0; x<Object.keys(p.colors).length; x++) {
                     if(p.colors[x].match(color.toLowerCase())) {
@@ -53,15 +49,20 @@ var myPaintings = new Vue({
         },
         showAll: function () {
             myPaintings.paintings = paintings
-            myPaintings.abc = []
+            myPaintings.checked = []
         },
         checkboxClicked: function () {
 
-            if(myPaintings.abc.length > 0) {
-                filterPaintings(myPaintings.abc)
+            if(myPaintings.checked.length > 0) {
+                filterPaintings(myPaintings.checked)
             } else {
                 myPaintings.paintings = paintings
             }
+        },
+        resetSelection: function () {
+            myPaintings.paintings = paintings
+            myPaintings.checked = []
+            searchColor = ""
         }
     }
 })

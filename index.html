@@ -37,9 +37,10 @@
             <br><br><br><br><br><br>
 
             <label v-for="(color, index) in colors" :for="color.id">
-                <input :id='color.id' class="filled-in" type="checkbox" :value='color.color' v-model="abc" @change="checkboxClicked"/>
+                <input :id='color.id' class="filled-in" type="checkbox" :value='color.color' v-model="checked" @change="checkboxClicked"/>
                 <span>{{color.name}}</span>
             </label>
+            <button v-on:click="resetSelection">Reset Selection</button>
 
 
             <br><br><br><br><br><br>
