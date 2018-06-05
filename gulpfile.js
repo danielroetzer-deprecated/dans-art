@@ -19,8 +19,8 @@ gulp.task('scripts', function () {
     return gulp.src('js/main.js')
         .pipe(gulp.dest('dist/js/'))
         .pipe(rename('main.min.js'))
-        .pipe(uglify())
-        .pipe(gulp.dest('dist/js/'))
+        //.pipe(uglify())
+        //.pipe(gulp.dest('dist/js/'))
         .pipe(notify("JS successfully minified"));
 });
 

@@ -1,5 +1,5 @@
 var paintings = [
-    {
+    /*{
         "title": "Sunrise",
         "path": "painting1.png",
         "colors": ["black"]
@@ -14,7 +14,53 @@ var paintings = [
     }, {
         "title": "Mighty Mountains",
         "path": "painting4.jpg",
-        "colors": ["green"]
+        "colors": ["green"],
+        "tags": []
+    },*/ {
+        "title": "Forest Light Rays",
+        "path": "forest_light-rays.jpg",
+        "colors": ["green", "yellow", "blue", "brown"],
+        "tags": []
+    }, {
+        "title": "Frosty Sunrise",
+        "path": "frosty-sunrise.jpg",
+        "colors": ["red", "orange", "yellow", "black", "white", "lavender"],
+        "tags": []
+    }, {
+        "title": "Calm Winter",
+        "path": "calm-winter.jpg",
+        "colors": ["blue", "white", "brown"],
+        "tags": []
+    }, {
+        "title": "Warm Seescape",
+        "path": "warm-seescape.jpg",
+        "colors": ["green", "blue", "red", "lavender"],
+        "tags": []
+    }, {
+        "title": "Sunset Mountains",
+        "path": "sunset-mountains.jpg",
+        "colors": ["red", "yellow", "lavender"],
+        "tags": []
+    }, {
+        "title": "Cold Mountain",
+        "path": "cold-mountain.jpg",
+        "colors": ["green", "white", "black", "brown", "blue"],
+        "tags": []
+    }, {
+        "title": "Bridge Reflections",
+        "path": "bridge-reflections.jpg",
+        "colors": ["green", "red", "orange", "yellow", "lavender", "blue", "brown"],
+        "tags": []
+    }, {
+        "title": "Vivid Colours",
+        "path": "vivid-colours.jpg",
+        "colors": ["green", "brown", "red", "yellow", "blue", "lavender"],
+        "tags": []
+    }, {
+        "title": "Waterfall",
+        "path": "waterfall.jpg",
+        "colors": ["green", "blue", "red"],
+        "tags": []
     }
 ];
 
@@ -33,12 +79,13 @@ var myPaintings = new Vue({
             paintings: paintings,
             searchColor: "",
             colors: colors,
+            gridActive: false,
+            amount: Object.keys(paintings).length,
             checked: []
         }
     },
     methods: {
         filterByColor: function (color) {
-            myPaintings.checked = []
             myPaintings.paintings = paintings.filter(function (p) {
                 for(var x=0; x<Object.keys(p.colors).length; x++) {
                     if(p.colors[x].match(color.toLowerCase())) {
@@ -46,10 +93,11 @@ var myPaintings = new Vue({
                     }
                 }
             })
+            finalAction(false, true)
         },
         showAll: function () {
             myPaintings.paintings = paintings
-            myPaintings.checked = []
+            finalAction(true, true)
         },
         checkboxClicked: function () {
 
@@ -58,11 +106,18 @@ var myPaintings = new Vue({
             } else {
                 myPaintings.paintings = paintings
             }
+            finalAction(true, false)
         },
         resetSelection: function () {
             myPaintings.paintings = paintings
-            myPaintings.checked = []
-            searchColor = ""
+            finalAction(true, true);
+        },
+        changeView(type) {
+            if(type === "grid"){
+                myPaintings.gridActive = true
+            }else if(type === "full") {
+                myPaintings.gridActive = false
+            }
         }
     }
 })
@@ -79,6 +134,18 @@ function filterPaintings(selected) {
     })
 }
 
+
+function finalAction(clearTextField, clearCheckboxes) {
+    myPaintings.amount = myPaintings.paintings.length
+    
+    if(clearTextField) {
+        myPaintings.searchColor = ""
+    }
+
+    if(clearCheckboxes) {
+        myPaintings.checked = []
+    }
+}
 /*
 function selectedColors() {
     var array = new Array()
@@ -94,3 +161,24 @@ function selectedColors() {
 
     return (counter !== 0) ? array : -1
 }*/
+
+var search = new Vue({
+    el: "#search",
+    data: function() {
+        return {
+            searchColor: "",
+        }
+    },
+    methods: {
+        filterByColor: function (color) {
+            myPaintings.paintings = paintings.filter(function (p) {
+                for(var x=0; x<Object.keys(p.colors).length; x++) {
+                    if(p.colors[x].match(color.toLowerCase())) {
+                        return p.colors[x]
+                    }
+                }
+            })
+            finalAction(false, true)
+        }
+    }
+})

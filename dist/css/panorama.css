@@ -1,7 +1,7 @@
 .panorama {
   height: 400px;
   width: 100%;
-  background-color: #2997ed;
+  background-color: main;
   background-image: url("../img/brushes.jpg");
   background-size: cover;
 }
@@ -9,12 +9,4 @@
   color: #fff;
   text-shadow: 3px 3px 2px #000;
   font-size: 6em;
-}
-body {
-  padding: 0;
-  margin: 0;
-  background-color: #d3d3d3;
-}
-.cart-title {
-  text-shadow: 1px 1px #000 !important;
 }
