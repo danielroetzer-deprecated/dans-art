@@ -33,8 +33,8 @@ var paintings = [
         "colors": ["blue", "white", "brown"],
         "tags": []
     }, {
-        "title": "Warm Seescape",
-        "path": "warm-seescape.jpg",
+        "title": "Warm Seascape",
+        "path": "warm-seascape.jpg",
         "colors": ["green", "blue", "red", "lavender"],
         "tags": []
     }, {
