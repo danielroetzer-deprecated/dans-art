@@ -1,24 +1,90 @@
 <html>
     <head>
         <title>My Paintings</title>
-        <link rel="stylesheet" href="dist/css/main.css" type="text/css" />
 
         <!-- Compiled and minified CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+
+        <link rel="stylesheet" href="dist/css/main.css" type="text/css" />
     </head>
 
     <body>
         <div class="panorama">
             <!--<div class="title">Dan´s Art</div>-->
-            <div class="search container" id="search">
+        </div>
+
+
+
+
+        <div class="container" id="paintings">
+            <div id="preview" class="section">
+                <div class="title">Preview</div>
+                <div class="carousel">
+                    <a v-for="p in previews" class="carousel-item"><img class="materialboxed" width="200" :src="'dist/img/paintings/' + p.path"/></a>
+                </div>
+            </div>
+
+            <div id="filters" class="section">
+                <div class="title">Filters</div>
                 <input type="text" placeholder="Enter a Color" @keyup.enter="filterByColor(searchColor)" v-model='searchColor'/>
+                <div class="row">
+                    <label v-for="color in colors" :for="color.id">
+                        <div class="col s4 m2">
+                            <input :id='color.id' class="filled-in" type="checkbox" :value='color.color' v-model="checked" @change="checkboxClicked"/>
+                            <span>{{color.name}}</span>
+                        </div>
+                    </label>
+                </div>
+
+                <button v-on:click="resetSelection" class="btn waves-effect waves-light">Reset Selection</button>
+                <span>Shown Paintings: {{amount}}</span>
+                <br />
+                <!--<button v-on:click="changeView('grid')">Grid</button>
+                <button v-on:click="changeView('full')">Full width</button>-->
+            </div>
+
+            <div id="painting-view">
+                <div class="row">
+                    <div v-for="(p, i) in paintings">
+
+                        <!--<div v-bind:class="['col s12 m6 l4', !gridActive ? 'offset-m6 offset-l8' : '']">-->
+                        <div v-bind:class="">
+
+                            <div class="painting">
+                                <div class="painting-image">
+                                    <img :src="'dist/img/paintings/' + p.path" class="materialboxed">
+                                </div>
+                                <div class="painting-content">
+                                    <div class="painting-title">{{p.title}}
+                                        <span class="subtext">{{p.date}}</span>
+                                    </div>
+                                    <span>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!--<div v-if="i % 2 != 0" class="col s12 m6 l4">
+                            <div class="card">
+                                <div class="card-image">
+                                    <img :src="'dist/img/paintings/' + p.path">
+                                    <span class="card-title"></span>
+                                </div>
+                                <div class="card-content">
+                                    {{p.title}}
+                                </div>
+                            </div>
+                        </div>-->
+                    </div>
+                    <div v-if="paintings.length < 1 ">
+                        <span>No Paintings Match The Selection</span>
+                    </div>
+                </div>
             </div>
         </div>
 
 
-        <div class="container" id="paintings">
+        <!--<div class="container" id="paintings">
+            <div class="title">Paintings</div>
 
-            <!--<input type="text" placeholder="Enter a Color" @keyup.enter="filterByColor(searchColor)" v-model='searchColor'/>-->
             <button v-on:click="showAll()">All</button>
             <button v-on:click="filterByColor('green')">Green</button>
             <button v-on:click="filterByColor('blue')">Blue</button>
@@ -39,43 +105,18 @@
 
             <br><br><br><br><br><br>
 
-            <button v-on:click="changeView('grid')">Grid</button>
-            <button v-on:click="changeView('full')">Full width</button>
 
 
 
-            <div class="row">
-                <div v-for="(p, i) in paintings">
 
-                    <div v-if="i % 2 == 0" v-bind:class="['col s12 m6 l4', !gridActive ? 'offset-m6 offset-l8' : '']">
-                        <div class="card">
-                            <div class="card-image">
-                                <img :src="'dist/img/paintings/' + p.path">
-                                <span class="card-title"></span>
-                            </div>
-                            <div class="card-content">
-                                {{p.title}}
-                            </div>
-                        </div>
-                    </div>
-                    <div v-if="i % 2 != 0" class="col s12 m6 l4">
-                        <div class="card">
-                            <div class="card-image">
-                                <img :src="'dist/img/paintings/' + p.path">
-                                <span class="card-title"></span>
-                            </div>
-                            <div class="card-content">
-                                {{p.title}}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div v-if="paintings.length < 1 ">
-                    <span>No Paintings Match The Selection</span>
-                </div>
-            </div>
+
+        </div>-->
+
+        <div class="footer">
+
         </div>
 
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
         <script src="node_modules/vue/dist/vue.js"></script>
         <script src="dist/js/main.js"></script>
 

@@ -20,6 +20,7 @@ var paintings = [
         "title": "Forest Light Rays",
         "path": "forest_light-rays.jpg",
         "colors": ["green", "yellow", "blue", "brown"],
+        "date": "05-05-2018",
         "tags": []
     }, {
         "title": "Frosty Sunrise",
@@ -68,8 +69,14 @@ var colors = [
     {color: "green", id: "check-green", name: "Green"},
     {color: "yellow", id: "check-yellow", name: "Yellow"},
     {color: "blue", id: "check-blue", name: "Blue"},
+    {color: "orange", id: "check-orange", name: "Orange"},
+    {color: "red", id: "check-red", name: "Red"},
+    {color: "lavender", id: "check-lavender", name: "Lavender"},
+    {color: "brown", id: "check-brown", name: "Brown"},
+    {color: "white", id: "check-white", name: "White"},
     {color: "black", id: "check-black", name: "Black"}
 ]
+
 
 
 var myPaintings = new Vue({
@@ -77,6 +84,7 @@ var myPaintings = new Vue({
     data: function () {
         return {
             paintings: paintings,
+            previews: paintings,
             searchColor: "",
             colors: colors,
             gridActive: false,
@@ -122,6 +130,11 @@ var myPaintings = new Vue({
     }
 })
 
+$(document).ready(function() {
+    $('.carousel').carousel();
+    $('.materialboxed').materialbox();
+});
+
 function filterPaintings(selected) {
     myPaintings.paintings = paintings.filter(function (p) {
         for(var x=0; x<Object.keys(p.colors).length; x++) {
@@ -137,7 +150,7 @@ function filterPaintings(selected) {
 
 function finalAction(clearTextField, clearCheckboxes) {
     myPaintings.amount = myPaintings.paintings.length
-    
+
     if(clearTextField) {
         myPaintings.searchColor = ""
     }
@@ -161,24 +174,3 @@ function selectedColors() {
 
     return (counter !== 0) ? array : -1
 }*/
-
-var search = new Vue({
-    el: "#search",
-    data: function() {
-        return {
-            searchColor: "",
-        }
-    },
-    methods: {
-        filterByColor: function (color) {
-            myPaintings.paintings = paintings.filter(function (p) {
-                for(var x=0; x<Object.keys(p.colors).length; x++) {
-                    if(p.colors[x].match(color.toLowerCase())) {
-                        return p.colors[x]
-                    }
-                }
-            })
-            finalAction(false, true)
-        }
-    }
-})

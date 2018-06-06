@@ -1,29 +1,26 @@
-.panorama {
-  height: 500px;
-  width: 100%;
-  background-color: #2997ed;
-  background-image: url("../img/brushes.jpg");
-  background-size: cover;
-}
-.panorama .title {
-  color: #fff;
-  text-shadow: 3px 3px 2px #000;
-  font-size: 6em;
-}
-.title {
-  font-size: 2.5rem;
-  font-weight: 300;
-  padding: 0 5px;
-}
-.section {
-  margin-top: 50px;
-  background-color: #fff;
-  border-radius: 5px;
-  padding: 10px 15px;
-  -webkit-box-shadow: 0 10px 6px -6px #777;
-  -moz-box-shadow: 0 10px 6px -6px #777;
-  box-shadow: 0 10px 6px -6px #777;
-}
+/*.painting
+    height: 300px
+    width: 100%
+    display: flex;
+    //background-color: back
+    margin-top: 20px
+
+    .painting-image
+        display: block;
+
+        img
+            max-height: 300px
+            max-width: 250px
+            border-radius: 5px
+
+    .painting-content
+        display: flex;
+        max-height: 300px
+
+        .painting-title
+            font-size: 1.25rem
+            font-weight: 400;
+*/
 .painting {
   margin-top: 50px;
   display: flex;
@@ -73,18 +70,4 @@
   .painting {
     display: block;
   }
-}
-.footer {
-  margin-top: 50px;
-  padding: 20px;
-  height: 300px;
-  background-color: #2f2f2f;
-}
-body {
-  padding: 0;
-  margin: 0;
-  background-color: #f2f2f2;
-}
-#painting-view {
-  margin-top: 50px;
 }
