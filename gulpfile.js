@@ -6,7 +6,7 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify');
 
 gulp.task('stylus', function () {
-    return gulp.src('./stylus/*.styl')
+    return gulp.src('./stylus/main.styl')
       .pipe(stylus())
       .pipe(gulp.dest('dist/css'))
       .pipe(rename('main.min.css'))
